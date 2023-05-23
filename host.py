@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 import requests,urllib
 import urllib.parse
 import json,re
-import you
 app = Flask(__name__, template_folder='.')
 
 @app.route('/')
@@ -13,6 +12,7 @@ def index():
 
 @app.route('/send')
 def getapidata():
+    import you
     # message = request.args.get("text")
     
     message= "Kies je techniek dan ga je tijdens de les op zoek naar creatieve oplossingen voor technische vraagstukken. We werken daarbij vaak samen met bedrijven en organisaties. Zo heeft de gemeente Ermelo ons gevraagd om een oplossing te bedenken voor de processierups. Je leert ook al iets over programmeren en 3D-ontwerpen. In ons pas vernieuwde technieklokaal word je uitgedaagd om met de nieuwste machines en apparatuur jouw ideeën werkelijkheid te laten worden."
@@ -25,58 +25,18 @@ Volg deze de regels:
 -Je doet alle beoordelingsteksten voor de gebruiker.
 -Je schrijft de tekst in de taal van de gebruiker
 -Je doet alle beoordelingsteksten voor de gebruiker.
--u kunt tussen de 1 en 5 punten toekennen door gebruik te maken van het puntensysteem
--Je mag nooit punten geven in dit formaat: POINT/MAX_POINTS
-
-Relevantie:
-1 = Helemaal niet relevant
-2 = Enigszins relevant
-3 = Matig relevant
-4 = Zeer relevant
-5 = Zeer relevant
-
-Nauwkeurigheid:
-1 = Volledig onnauwkeurig
-2 = Meestal onnauwkeurig
-3 = Enigszins onnauwkeurig
-4 = Meestal nauwkeurig
-5 = Volledig nauwkeurig
-
-Helderheid:
-1 = Zeer onduidelijk
-2 = Enigszins onduidelijk
-3 = Neutraal
-4 = Enigszins duidelijk
-5 = Heel duidelijk
-
-Volledigheid:
-1 = Zeer onvolledig
-2 = Enigszins onvolledig
-3 = Neutraal
-4 = Enigszins compleet
-5 = Zeer compleet
-
-objectiviteit:
-1 = Volledig subjectief
-2 = Meestal subjectief
-3 = Neutraal
-4 = Meestal objectief
-5 = Volledig objectief
-
-Belangrijkheid:
-1 = Helemaal niet significant
-2 = Enigszins significant
-3 = Matig significant
-4 = Zeer significant
-5 = Zeer significant
-
-Geschiktheid:
-1 = Helemaal niet geschikt
-2 = Enigszins ongeschikt
-3 = Neutraal
-4 = Enigszins geschikt
-5 = Zeer geschikt
-
+-u kunt tussen de 1 en 10 punten toekennen door gebruik te maken van het puntensysteem
+punten:
+1 Slecht
+2 Zeer slecht
+3 Matig
+4 Onder het gemiddelde
+5 Gemiddeld
+6 Bovengemiddeld
+7 Goed
+8 Zeer goed
+9 Uitstekend
+10 Uitzonderlijk goed
 Example! - Stick to this JSON formatting exactly!
 ```json
 {
@@ -106,19 +66,21 @@ De gebruiker wil dat je de volgende tekst beoordeelt:""" + str(message)
 # Belangrijkheid: De belangrijkheid-parameter meet de mate waarin het antwoord relevant is voor het begrijpen van het onderwerp en het beantwoorden van de onderzoeksvraag. Een score van 1 betekent dat het antwoord helemaal niet significant is, terwijl een score van 5 betekent dat het antwoord uiterst significant is.
 # Geschiktheid: De geschiktheid-parameter meet de mate waarin het antwoord geschikt is voor de specifieke context van de onderzoeksvraag en het beoogde publiek. Een score van 1 betekent dat het antwoord zeer ongeschikt is, terwijl een score van 5 betekent dat het antwoord zeer geschikt is.
 
-    prompt = urllib.parse.quote(prompt)
     
-    url = f"https://api.betterapi.net/youchat?inputs={prompt}&key=site"
-    jsonobj = requests.get(url).json() # load json form api
-    response = jsonobj["generated_text"] # print message response
+    # url = f"https://api.betterapi.net/youchat?inputs={prompt}&key=site"
+    # jsonobj = requests.get(url).json() # load json form api
+    # response = jsonobj["generated_text"] # print message response
+    
+    response = you.Completion.create(prompt=f"{prompt}").text
+    print(response)
     
         
     data = re.split(r"\s(?=[{\[])", response)[-1]
-    try:
+    if not data[-1] == '}':
+        if not data[-1] == '"':
+            data = data + '"'
         data = data.split("}", 1)[0]
-        data = data + "}"
-    except:
-        pass
+        data = data + '}'
     print(data)
     with open("logs.txt", "w") as f:
         f.write(data)
@@ -202,4 +164,4 @@ De gebruiker wil dat je de volgende tekst beoordeelt:""" + str(message)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="192.168.2.16")

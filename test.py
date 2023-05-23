@@ -1,24 +1,32 @@
-from pychatgpt import Chat, Options
 
-options = Options()
+import you
 
-# [New] Pass Moderation. https://github.com/rawandahmad698/PyChatGPT/discussions/103
-# options.pass_moderation = False
+# simple request with links and details
+response = you.Completion.create(
+    prompt="write me an email")
 
-# [New] Enable, Disable logs
-options.log = True
+print(response.text)
 
-# Track conversation
-options.track = True 
+# {
+#     "response": "...",
+#     "links": [...],
+#     "extra": {...},
+#         "slots": {...}
+#     }
+# }
 
+# chatbot
 
-# Optionally, you can pass a file path to save the conversation
-# They're created if they don't exist
+# chat = []
 
-# options.chat_log = "chat_log.txt"
-# options.id_log = "id_log.txt"
+# while True:
+#     prompt = input("You: ")
+#     if prompt == 'q':
+#         break
+#     response = you.Completion.create(
+#         prompt=prompt,
+#         chat=chat)
 
-# Create a Chat object
-chat = Chat(email="silke2007minecraft@gmail.com", password="Landrover@01", options=options)
-answer = chat.ask("How are you?")
-print(answer)
+#     print("Bot:", response.text)
+
+#     chat.append({"question": prompt, "answer": response.text})
