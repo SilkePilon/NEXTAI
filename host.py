@@ -164,4 +164,4 @@ De gebruiker wil dat je de volgende tekst beoordeelt:""" + str(message)
 
 
 if __name__ == '__main__':
-    app.run(host="192.168.2.16")
+    app.run()

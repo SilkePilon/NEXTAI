@@ -1,15 +1,1 @@
-{
-  "Relevantie": 8,
-  "Relevantieinfo": "De tekst is relevant, omdat het beschrijft wat studenten leren tijdens technieklessen en hoe ze worden uitgedaagd om creatieve oplossingen te vinden voor technische vraagstukken.",
-  "Nauwkeurigheid": 7,
-  "Nauwkeurigheidinfo": "De informatie over samenwerking met bedrijven en organisaties en het project met de gemeente Ermelo geeft blijk van de nauwkeurigheid van de tekst. Er wordt ook vermeld dat studenten leren over programmeren en 3D-ontwerpen.",
-  "Duidelijkheid": 9,
-  "Duidelijkheidinfo": "De tekst is duidelijk geformuleerd en gemakkelijk te begrijpen. Het beschrijft de leerervaring van de studenten en de uitdagingen waarmee ze worden geconfronteerd.",
-  "Volledigheid": 8,
-  "Volledigheidinfo": "De tekst geeft een vrij volledig beeld van wat studenten kunnen verwachten tijdens technieklessen en hoe ze worden voorbereid op toekomstige banen in de technische sector.",
-  "Objectiviteit": 8,
-  "Objectiviteitinfo": "De tekst geeft meer neutrale informatie over wat studenten leren tijdens technieklessen en welke vaardigheden ze ontwikkelen.",
-  "Belangrijkheid": 8,
-  "Belangrijkheidinfo": "Het is belangrijk voor studenten om te worden uitgedaagd en kennis te maken met technische vraagstukken en idee\u00ebn werkelijkheid te laten worden. Het feit dat ze samenwerken met bedrijven en organisaties voegt nog meer waarde toe aan hun leerervaring.",
-  "Geschiktheid": 9,
-  "Geschiktheidinfo": "De tekst is zeer geschikt voor mensen die ge\u00efnteresseerd zijn in techniek en creativiteit. Het geeft een goede beschrijving van het soort lesmateriaal dat studenten zullen gebruiken"}
+Ik kan je helpen met het beoordelen van de tekst. Geef me kort wat meer informatie over het doel van de beoordeling, bijvoorbeeld wat het beoogde effect is van de feedback. Dan kan ik je verder helpen met de beoordeling."}
